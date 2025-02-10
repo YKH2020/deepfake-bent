@@ -4,6 +4,7 @@ import numpy as np
 import glob
 from tqdm import tqdm
 import mediapipe as mp
+import pickle
 from imquality import brisque
 from xgboost import XGBClassifier
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
@@ -120,3 +121,4 @@ if __name__ == "__main__":
     
     X_train, X_test, X_val, y_train, y_val, y_test = process_dataset(base_path)
     model = train_and_evaluate(X_train,X_test,X_val,y_train,y_val,y_test)
+    pickle.dump(model, open('xgboost_model.pkl', 'wb'))
